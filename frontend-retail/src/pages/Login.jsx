@@ -73,7 +73,7 @@ export default function Login() {
 
           <form className="login-card login-card-glass" onSubmit={handleSubmit}>
             <div className="login-gem login-gem-pop">
-              <img src="/logo.png" alt="Swag Gold" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 8 }} onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.textContent = '◆'; }} />
+              <img src={import.meta.env.BASE_URL + 'logo.png'} alt="Swag Gold" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 8 }} onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.textContent = '◆'; }} />
             </div>
             <div className="login-title">{t('login.title')}</div>
             <div className="login-sub">{t('login.sub')}</div>

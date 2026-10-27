@@ -99,20 +99,20 @@ const MAX_SCROLL = 3000; // Virtual scroll range
 // company's own site (swag.gold) and served locally from /public/products —
 // no external hotlinking, no stock-photo licensing risk.
 const IMAGES = [
-    "/products/product-1.jpg",
-    "/products/product-2.png",
-    "/products/product-3.webp",
-    "/products/product-4.webp",
-    "/products/product-5.jpg",
-    "/products/product-6.jpg",
-    "/products/product-7.jpg",
-    "/products/product-8.jpg",
-    "/products/product-9.jpg",
-    "/products/product-10.jpg",
-    "/products/product-11.png",
-    "/products/product-12.webp",
-    "/products/product-13.webp",
-    "/products/product-14.webp",
+    `${import.meta.env.BASE_URL}products/product-1.jpg`,
+    `${import.meta.env.BASE_URL}products/product-2.png`,
+    `${import.meta.env.BASE_URL}products/product-3.webp`,
+    `${import.meta.env.BASE_URL}products/product-4.webp`,
+    `${import.meta.env.BASE_URL}products/product-5.jpg`,
+    `${import.meta.env.BASE_URL}products/product-6.jpg`,
+    `${import.meta.env.BASE_URL}products/product-7.jpg`,
+    `${import.meta.env.BASE_URL}products/product-8.jpg`,
+    `${import.meta.env.BASE_URL}products/product-9.jpg`,
+    `${import.meta.env.BASE_URL}products/product-10.jpg`,
+    `${import.meta.env.BASE_URL}products/product-11.png`,
+    `${import.meta.env.BASE_URL}products/product-12.webp`,
+    `${import.meta.env.BASE_URL}products/product-13.webp`,
+    `${import.meta.env.BASE_URL}products/product-14.webp`,
 ];
 
 // Helper for linear interpolation

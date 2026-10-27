@@ -132,8 +132,20 @@ export function AuthProvider({ children }) {
       id: data.user_id, username: data.username, name: data.full_name, role: data.role,
       mustChangePassword: data.must_change_password, apps: data.apps,
     };
+    const targetUrl = new URL(APPS_META[target].url, window.location.href);
+    if (targetUrl.origin === window.location.origin) {
+      // Same site (single-domain build): drop the session into the other app's own storage namespace and go there.
+      const store = window.__rawLocalStorage || window.localStorage;
+      const prefix = window.__rawLocalStorage ? `${target}:` : '';
+      store.setItem(`${prefix}sg_token`, data.access_token);
+      store.setItem(`${prefix}sg_user`, JSON.stringify(u));
+      sessionStorage.setItem('sg_just_logged_in', '1');
+      window.location.href = targetUrl.href;
+      return;
+    }
+    // Different site (two separate deployments): hand the token over in the address hash.
     const packed = btoa(unescape(encodeURIComponent(JSON.stringify({ t: data.access_token, u }))));
-    window.location.href = `${APPS_META[target].url}/#sso=${packed}`;
+    window.location.href = `${targetUrl.href.replace(/\/$/, '')}/#sso=${packed}`;
   }, []);
 
   return (

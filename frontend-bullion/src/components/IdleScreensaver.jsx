@@ -43,7 +43,7 @@ export default function IdleScreensaver() {
         pointerEvents: 'none',
       }}>
         <img
-          src="/logo.png"
+          src={import.meta.env.BASE_URL + 'logo.png'}
           alt="Swag Bullion"
           style={{ width: 160, height: 160, objectFit: 'contain' }}
           onError={(e) => { e.target.style.display = 'none'; }}

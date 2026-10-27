@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swag Gold</title>
+  <style>
+    :root { color-scheme: dark; }
+    body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; background:#0d1020; color:#f3ecd8; font-family:Inter,system-ui,sans-serif; }
+    .box { text-align:center; padding:32px; max-width:420px; width:100%; }
+    h1 { font-size:22px; margin:0 0 6px; } p { color:#b8ae94; margin:0 0 24px; font-size:14px; }
+    a { display:block; margin:10px 0; padding:16px; border:1px solid #d4af37; border-radius:12px; color:#f3ecd8; text-decoration:none; font-weight:600; }
+    a:hover { background:#d4af37; color:#151928; } small { display:block; font-weight:400; opacity:.7; margin-top:4px; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Swag Gold</h1>
+    <p>Same user & password for both. Choose where to work:</p>
+    <a href="/retail/">Retail<small>التجزئة</small></a>
+    <a href="/bullion/">Bullion<small>سواج بوليون</small></a>
+  </div>
+  <script>
+    // If this browser is already signed in to exactly one app, go straight there.
+    try {
+      var r = !!localStorage.getItem('retail:sg_token'), b = !!localStorage.getItem('bullion:sg_token');
+      if (r !== b) location.replace(r ? '/retail/' : '/bullion/');
+    } catch (e) {}
+  </script>
+</body>
+</html>

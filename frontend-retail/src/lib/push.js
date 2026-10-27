@@ -13,7 +13,7 @@ export async function registerPushNotifications() {
   if (!('serviceWorker' in navigator) || !('PushManager' in window)) return; // unsupported browser — no-op
 
   try {
-    const registration = await navigator.serviceWorker.register('/sw.js');
+    const registration = await navigator.serviceWorker.register(import.meta.env.BASE_URL + 'sw.js');
 
     let permission = Notification.permission;
     if (permission === 'default') permission = await Notification.requestPermission();

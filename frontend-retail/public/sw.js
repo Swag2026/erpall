@@ -3,7 +3,7 @@
 // this exists separately from the in-app websocket handling).
 
 self.addEventListener('push', (event) => {
-  let data = { title: 'Swag Gold', body: 'You have a new notification', url: '/' };
+  let data = { title: 'Swag Gold', body: 'You have a new notification', url: self.registration.scope };
   try {
     if (event.data) data = { ...data, ...event.data.json() };
   } catch (_) { /* fall back to defaults above */ }
@@ -11,17 +11,17 @@ self.addEventListener('push', (event) => {
   event.waitUntil(
     self.registration.showNotification(data.title, {
       body: data.body,
-      icon: '/logo.png',
-      badge: '/logo.png',
+      icon: self.registration.scope + 'logo.png',
+      badge: self.registration.scope + 'logo.png',
       tag: data.tag, // same tag replaces the previous notification instead of stacking
-      data: { url: data.url || '/' },
+      data: { url: data.url || self.registration.scope },
     })
   );
 });
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-  const targetUrl = event.notification.data?.url || '/';
+  const targetUrl = event.notification.data?.url || self.registration.scope;
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
       for (const client of clientList) {

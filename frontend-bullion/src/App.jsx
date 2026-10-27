@@ -172,7 +172,7 @@ export default function App() {
         <ThemeProvider>
           <AuthProvider>
             <CallProvider>
-              <BrowserRouter>
+              <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
                 <AppRoutes />
               </BrowserRouter>
               <IncomingCallBanner />

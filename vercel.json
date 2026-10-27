@@ -1,0 +1,15 @@
+{
+  "framework": null,
+  "installCommand": "echo skip",
+  "buildCommand": "bash build-all.sh",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/retail", "destination": "/retail/index.html" },
+    { "source": "/retail/:path*", "destination": "/retail/index.html" },
+    { "source": "/bullion", "destination": "/bullion/index.html" },
+    { "source": "/bullion/:path*", "destination": "/bullion/index.html" }
+  ],
+  "headers": [
+    { "source": "/(retail|bullion)/sw.js", "headers": [{ "key": "Cache-Control", "value": "no-cache" }] }
+  ]
+}

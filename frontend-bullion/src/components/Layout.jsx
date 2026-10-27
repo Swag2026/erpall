@@ -191,7 +191,7 @@ export default function Layout() {
     try {
       const n = new Notification(fromName, {
         body: (preview || '').slice(0, 100),
-        icon: '/logo.png',
+        icon: import.meta.env.BASE_URL + 'logo.png',
         tag: 'swaggold-chat', // replaces any previous notification instead of stacking
       });
       n.onclick = () => {
@@ -309,7 +309,7 @@ export default function Layout() {
             </svg>
           </button>
           <div className="mobile-topbar-brand">
-            <img src="/logo.png" alt="Swag Bullion" style={{ width: 22, height: 22, objectFit: 'contain' }} onError={(e) => { e.target.style.display = 'none'; }} />
+            <img src={import.meta.env.BASE_URL + 'logo.png'} alt="Swag Bullion" style={{ width: 22, height: 22, objectFit: 'contain' }} onError={(e) => { e.target.style.display = 'none'; }} />
             <span>{t('brand.name')}</span>
           </div>
           <div style={{ width: 36, display: 'flex', justifyContent: 'flex-end' }} className="mobile-topbar-bell">
@@ -375,7 +375,7 @@ export default function Layout() {
           </button>
           <div className="brand">
             <div className="brand-gem">
-              <img src="/logo.png" alt="Swag Bullion" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 5 }} onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.textContent = '◆'; }} />
+              <img src={import.meta.env.BASE_URL + 'logo.png'} alt="Swag Bullion" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 5 }} onError={(e) => { e.target.style.display = 'none'; e.target.parentNode.textContent = '◆'; }} />
             </div>
             <div className="brand-mark">{t('brand.name')}</div>
             <div className="brand-sub">{t('brand.sub')}</div>

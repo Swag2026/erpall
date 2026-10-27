@@ -11,7 +11,7 @@ from slowapi.middleware import SlowAPIMiddleware
 from .routers import auth, contacts, invoices, analytics, cost_rates, activity_logs, settings, reports, backup, users, day_openings, day_reconciliation, messages, external_sync, dashboard_summary, cash_deposit, calls, push, salesmen, shop_loans
 from .core.database import Base, engines
 from .core.tenant import TenantMiddleware
-from .core.bootstrap import ensure_roles
+from .core.bootstrap import ensure_roles, ensure_bootstrap_admin
 from .core.config import get_settings
 from .core.rate_limit import limiter
 
@@ -43,6 +43,7 @@ def _run_light_migrations():
 
 _run_light_migrations()
 ensure_roles()
+ensure_bootstrap_admin()
 
 _settings = get_settings()
 
