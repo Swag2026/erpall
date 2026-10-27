@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* shadcn/ui's standard CSS variable set (New York style, zinc base).
+   Names are distinct from this app's existing theme variables
+   (--surface, --gold-21, --line, etc. in globals.css), so nothing here
+   overrides the app's own look — these only back the Tailwind utility
+   classes (bg-background, border-border, text-muted-foreground, ...)
+   used by shadcn-sourced components like ImagesBadge and DonutChart.
+
+   IMPORTANT: this app's theme toggle sets a `data-theme="light"`
+   attribute (see globals.css / ThemeContext) — it does NOT add a `.dark`
+   class, so Tailwind's default `darkMode: ["class"]` `.dark` selector
+   never fires. Dark is this app's default (unconditional :root, same as
+   globals.css), and `[data-theme="light"]` is the opt-in override —
+   matching that exactly here is what makes these values actually follow
+   the app's real theme state instead of being stuck on one look. */
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 240 5.9% 10%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+}
+
+[data-theme="light"] {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 240 5.9% 10%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 5.9% 10%;
+}
+
+/* The Web3Bento component (and other shadcn/Tailwind-v4 sources) read colors
+   as var(--color-card), var(--color-border) ... . This app runs Tailwind v3,
+   where the theme variables above are bare HSL triplets under different
+   names, so those v4 names would resolve to nothing. Aliasing them here
+   (same values, both themes) makes the component render as designed. */
+:root,
+[data-theme="light"] {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-border: hsl(var(--border));
+  --color-ring: hsl(var(--ring));
+}
+
+/* Preflight is off, so this app's global button styles (background, border)
+   leak into the component's unselected pill buttons; reset just those. */
+[role="radiogroup"] > button[role="radio"] {
+  border: 0;
+  box-shadow: none;
+}
+[role="radiogroup"] > button[role="radio"][aria-checked="false"] {
+  background: transparent;
+}
+
+/* Report Overview canvas: always the dark shadcn look of the original
+   Web3 Bento design, whatever theme the rest of the app is on. The
+   --color-* aliases are redefined here too, because values computed at
+   :root would not pick up these overrides on their own. */
+.ov-dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --border: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+  --color-background: hsl(240 10% 3.9%);
+  --color-foreground: hsl(0 0% 98%);
+  --color-card: hsl(240 10% 3.9%);
+  --color-card-foreground: hsl(0 0% 98%);
+  --color-muted: hsl(240 3.7% 15.9%);
+  --color-muted-foreground: hsl(240 5% 64.9%);
+  --color-border: hsl(240 3.7% 15.9%);
+  --color-ring: hsl(240 4.9% 83.9%);
+  background: hsl(240 10% 3.9%);
+  color: hsl(0 0% 98%);
+  border-radius: 28px;
+  padding: 16px;
+}
+@media (min-width: 640px) {
+  .ov-dark { padding: 32px; }
+}
